@@ -14,7 +14,7 @@ const MyJobs = () => {
   useEffect(() => {
     const fetchMyJobs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/jobs", {
+        const response = await fetch("https://scod.onrender.com/api/jobs", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,7 +39,7 @@ const MyJobs = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8080/api/jobs/apply", {
+      const response = await fetch("https://scod.onrender.com/api/jobs/apply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
