@@ -89,13 +89,13 @@ const SignIn = () => {
         <CardContent>
           {error && <div className="text-red-500 text-center mb-4">{error}</div>}
           <div className="space-y-3">
-            <Button
+{/*             <Button
               className="w-full flex gap-2 bg-[#181818] text-white border border-white/30 hover:bg-[#222222]"
               onClick={handleOAuthLogin}
             >
               <img src="/google-icon.png" alt="Google" className="w-5 h-5" />
               Continue with Google
-            </Button>
+            </Button> */}
           </div>
           <Separator className="my-6 bg-white/20" />
           <form className="space-y-4" onSubmit={handleSubmit}>
