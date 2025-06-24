@@ -7,7 +7,7 @@ import Button from "../components/Button";
 import PostCard from "../components/PostCard";
 import PostModal from "../components/PostModal";
 
-const BACKEND_BASE_URL = "http://localhost:8080/";
+const BACKEND_BASE_URL = "https://scod.onrender.com/";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
