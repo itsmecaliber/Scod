@@ -9,14 +9,15 @@ const AppLayout = () => {
   const shouldShowNavbar = !hiddenNavbarRoutes.includes(location.pathname);
 
   return (
-    <div className="relative">
-      {/* ✅ Always show grid background */}
-      <div className="grid-background absolute inset-0 -z-10" />
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-black">
+      {/* ✅ Grid background - safely fills the viewport */}
+      <div className="grid-background absolute inset-0 -z-10 pointer-events-none" />
 
-      {/* ✅ Show Navbar only on non-landing/auth pages */}
+      {/* ✅ Conditionally rendered Navbar */}
       {shouldShowNavbar && <Navbar />}
 
-      <main className="min-h-screen container">
+      {/* ✅ Main content wrapper - padded and centered */}
+      <main className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <Outlet />
       </main>
     </div>
