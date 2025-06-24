@@ -8,7 +8,7 @@ export default function ReportedUsers() {
 
     const fetchReportedUsers = async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/admin/reports/users", {
+            const res = await fetch("https://scod.onrender.com/api/admin/reports/users", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
