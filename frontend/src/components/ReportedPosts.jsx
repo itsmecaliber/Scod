@@ -9,7 +9,7 @@ export default function ReportedPosts() {
     // 🔁 Fetch reported posts from admin API
     const fetchReportedPosts = async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/admin/reports/posts", {
+            const res = await fetch("https://scod.onrender.com/api/admin/reports/posts", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
