@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, MessageCircle, X, Pencil, Trash, AlertCircle } from "lucide-react";
 import axios from "axios";
 
-const BACKEND_BASE_URL = "http://localhost:8080";
+const BACKEND_BASE_URL = "https://scod.onrender.com";
 
 const PostCard = ({ post, onClick, onEdit, onDelete, isOwnProfile = false }) => {
   const navigate = useNavigate();
