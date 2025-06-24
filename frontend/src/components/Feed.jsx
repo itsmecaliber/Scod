@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Heart, MessageCircle, X } from "lucide-react";
 
-const BACKEND_BASE_URL = "http://localhost:8080";
+const BACKEND_BASE_URL = "https://scod.onrender.com";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
