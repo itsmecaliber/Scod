@@ -45,7 +45,7 @@ const CreatePost = () => {
       formData.append("description", description);
       formData.append("media", mediaFile);
 
-      const res = await fetch("http://localhost:8080/api/posts/create", {
+      const res = await fetch("https://scod.onrender.com/api/posts/create", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
