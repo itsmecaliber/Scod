@@ -34,7 +34,7 @@ const JobPage = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:8080/api/jobs/my", {
+        const response = await fetch("https://scod.onrender.com/api/jobs/my", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,7 +83,7 @@ const JobPage = () => {
       if (!token) throw new Error("User not authenticated.");
 
       const response = await fetch(
-        `http://localhost:8080/api/jobs/${editingJob.id}`,
+        `https://scod.onrender.com/api/jobs/${editingJob.id}`,
         {
           method: "PUT",
           headers: {
@@ -126,7 +126,7 @@ const JobPage = () => {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("User not authenticated.");
 
-      const response = await fetch(`http://localhost:8080/api/jobs/${jobId}`, {
+      const response = await fetch(`https://scod.onrender.com/api/jobs/${jobId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -160,7 +160,7 @@ const JobPage = () => {
       if (applicantsMap[jobId]) return;
 
       const response = await fetch(
-        `http://localhost:8080/api/jobs/jobs/${jobId}/applicants`,
+        `https://scod.onrender.com/api/jobs/jobs/${jobId}/applicants`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
