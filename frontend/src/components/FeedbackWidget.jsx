@@ -13,7 +13,7 @@ export default function FeedbackWidget() {
 
         const token = localStorage.getItem('token');
         try {
-            const res = await fetch('http://localhost:8080/api/feedback', {
+            const res = await fetch('https://scod.onrender.com/api/feedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
