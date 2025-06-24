@@ -34,7 +34,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/login", formData);
+      const response = await axios.post("https://scod.onrender.com/api/auth/login", formData);
       console.log("Logged in:", response.data);
 
       const token = response.data.token;
