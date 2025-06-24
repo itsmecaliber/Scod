@@ -1,6 +1,6 @@
 import React from "react";
 
-const BACKEND_BASE_URL = "http://localhost:8080/";
+const BACKEND_BASE_URL = "https://scod.onrender.com/";
 
 const PostModal = ({ post, onClose }) => {
   if (!post) return null;
