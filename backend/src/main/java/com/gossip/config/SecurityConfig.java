@@ -67,8 +67,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl("http://localhost:5173/homepage", true))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("http://localhost:5173/")
