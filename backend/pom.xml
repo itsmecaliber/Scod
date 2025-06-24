@@ -127,12 +127,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Local Custom Auth Module (if needed) -->
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>JwtAuth</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+       
 
     </dependencies>
 
