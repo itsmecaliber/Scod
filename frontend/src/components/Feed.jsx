@@ -8,6 +8,12 @@ import { Heart, MessageCircle, X } from "lucide-react";
 
 const BACKEND_BASE_URL = "https://scod.onrender.com";
 
+// Helper function to normalize paths by removing leading slash if present
+const normalizePath = (path) => {
+  if (!path) return "";
+  return path.startsWith("/") ? path.slice(1) : path;
+};
+
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -223,7 +229,6 @@ const Feed = () => {
   return (
     <div className="space-y-6 relative">
       {posts.map((post) => {
-        const normalizePath = (path) => (path?.startsWith("/") ? path.slice(1) : path);
         const profilePicUrl = profilePics[post.userId]
           ? `${BACKEND_BASE_URL}/${normalizePath(profilePics[post.userId])}`
           : "";
@@ -255,7 +260,7 @@ const Feed = () => {
                   <video
                     className="rounded-lg max-h-[500px] w-full object-contain"
                     controls
-                    src={`${BACKEND_BASE_URL}/${post.mediaPath}`}
+                    src={`${BACKEND_BASE_URL}/${normalizePath(post.mediaPath)}`}
                     type={post.mediaType}
                   />
                 </div>
@@ -265,7 +270,7 @@ const Feed = () => {
                 <div className="mt-3 flex justify-center">
                   <img
                     className="rounded-lg max-h-[600px] w-auto max-w-full object-contain"
-                    src={`${BACKEND_BASE_URL}/${post.mediaPath}`}
+                    src={`${BACKEND_BASE_URL}/${normalizePath(post.mediaPath)}`}
                     alt="Post media"
                   />
                 </div>
