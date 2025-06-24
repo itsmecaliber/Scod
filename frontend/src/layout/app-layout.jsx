@@ -16,7 +16,7 @@ const AppLayout = () => {
       {/* ✅ Show Navbar only on non-landing/auth pages */}
       {shouldShowNavbar && <Navbar />}
 
-      <main className="min-h-screen w-full px-4 sm:px-6 lg:px-8">
+      <main className="min-h-screen container">
         <Outlet />
       </main>
     </div>
