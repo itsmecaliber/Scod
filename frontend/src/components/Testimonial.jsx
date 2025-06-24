@@ -12,7 +12,7 @@ export default function Testimonial() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/feedback/admin");
+        const res = await fetch("https://scod.onrender.com/api/feedback/admin");
         const data = await res.json();
         const processed = data.map((f) => ({
           name: f.username,
