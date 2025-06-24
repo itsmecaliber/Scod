@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const BACKEND_URL = "http://localhost:8080/api/profile/search";
+const BACKEND_URL = "https://scod.onrender.com/api/profile/search";
 
 const UserSearchBar = () => {
   const [query, setQuery] = useState("");
