@@ -34,7 +34,7 @@ export default function Admin() {
 
     useEffect(() => {
         const token = localStorage.getItem("token"); // ✅ Get token
-        fetch("http://localhost:8080/api/admin/stats", {
+        fetch("https://scod.onrender.com/api/admin/stats", {
             headers: {
                 Authorization: `Bearer ${token}`, // ✅ Add Authorization header
             },
