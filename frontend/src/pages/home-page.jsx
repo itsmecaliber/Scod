@@ -30,7 +30,7 @@ const HomePage = () => {
       }
 
       try {
-        const res = await axios.get("http://localhost:8080/api/profile/me", {
+        const res = await axios.get("https://scod.onrender.com/api/profile/me", {
           headers: { Authorization: `Bearer ${token}` },
           validateStatus: (status) => status < 500,
         });
@@ -57,7 +57,7 @@ const HomePage = () => {
     const fetchTopGamersWithProfiles = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:8080/api/users/top-followed", {
+        const res = await axios.get("https://scod.onrender.com/api/users/top-followed", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -65,7 +65,7 @@ const HomePage = () => {
           const gamers = await Promise.all(
             res.data.map(async (user) => {
               try {
-                const profileRes = await axios.get(`http://localhost:8080/api/profile/${user.userId}`, {
+                const profileRes = await axios.get(`https://scod.onrender.com/api/profile/${user.userId}`, {
                   headers: { Authorization: `Bearer ${token}` },
                 });
                 return {
@@ -108,7 +108,7 @@ const HomePage = () => {
 
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/profile/search?query=${encodeURIComponent(query)}`,
+        `https://scod.onrender.com/api/profile/search?query=${encodeURIComponent(query)}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           validateStatus: (status) => status < 500,
