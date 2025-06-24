@@ -8,7 +8,7 @@ import PostCard from "../components/PostCard";
 import Sidebar from "../components/Sidebar";
 import PostModal from "../components/PostModal";
 
-const BACKEND_BASE_URL = "http://localhost:8080/";
+const BACKEND_BASE_URL = "https://scod.onrender.com/";
 
 const UserProfileView = () => {
   const { userId: username } = useParams();
