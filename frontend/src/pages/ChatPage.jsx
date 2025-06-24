@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Home, MessageCircle, PlusSquare, Briefcase } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-const BACKEND_BASE_URL = "http://localhost:8080";
+const BACKEND_BASE_URL = "https://scod.onrender.com";
 
 const ChatPage = () => {
     const { receiverId } = useParams();
