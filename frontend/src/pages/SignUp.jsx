@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,14 @@ const SignUp = () => {
     type: "" // 'success' or 'error'
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [showRenderWarning, setShowRenderWarning] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowRenderWarning(false);
+    }, 8000); // Hide after 8 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -78,6 +86,13 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black px-4 relative">
+      {/* Render Free Tier Wake-up Warning */}
+      {showRenderWarning && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-yellow-500 text-black px-4 py-2 rounded-md shadow-lg z-50 text-sm font-medium">
+          ⚠️ Our server is hosted on Render free tier. If it's inactive, it may take up to 1 minute to start. Please wait...
+        </div>
+      )}
+
       {/* Notification Toast */}
       {notification.show && (
         <div className={`fixed top-4 right-4 text-white px-4 py-2 rounded-md shadow-lg z-50 flex items-center space-x-2
