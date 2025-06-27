@@ -20,6 +20,7 @@ const HomePage = () => {
   const [searchError, setSearchError] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [topGamers, setTopGamers] = useState([]);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -150,15 +151,101 @@ const HomePage = () => {
   }
 
   return (
-    <div className="bg-black text-white h-screen overflow-y-auto">
+    <div className="bg-black text-white min-h-screen flex flex-col">
       {/* Top Navbar */}
       <div className="fixed top-0 left-0 right-0 z-50">
-        <Navbar profileInitial={profileInitial} />
+        <Navbar 
+          profileInitial={profileInitial} 
+          onMenuClick={() => setShowMobileSidebar(!showMobileSidebar)}
+        />
       </div>
 
       {/* Main Content */}
-      <div className="flex pt-16 flex-1 overflow-hidden ml-64">
-        {/* Left Sidebar */}
+      <div className="flex flex-1 pt-16 overflow-hidden">
+        {/* Left Sidebar - Mobile */}
+        {showMobileSidebar && (
+          <div className="fixed inset-0 z-40 md:hidden">
+            <div 
+              className="absolute inset-0 bg-black bg-opacity-50"
+              onClick={() => setShowMobileSidebar(false)}
+            ></div>
+            <aside className="absolute top-0 left-0 w-64 h-full bg-black border-r border-gray-800 p-4 overflow-y-auto z-50">
+              <div className="flex justify-end mb-4">
+                <button 
+                  onClick={() => setShowMobileSidebar(false)}
+                  className="text-white text-xl"
+                >
+                  ×
+                </button>
+              </div>
+              <ul className="space-y-6 text-lg font-medium">
+                <li className="hover:text-gray-300 cursor-pointer">
+                  <Link to="/homepage" onClick={() => setShowMobileSidebar(false)}>🏠 Home</Link>
+                </li>
+                <li className="hover:text-gray-300 cursor-pointer">
+                  <Link to="/jobtype" onClick={() => setShowMobileSidebar(false)}>💼 Jobs</Link>
+                </li>
+                <li className="hover:text-gray-300 cursor-pointer">
+                  <Link to="/chat" onClick={() => setShowMobileSidebar(false)}>📩 Messages</Link>
+                </li>
+                <li className="hover:text-gray-300 cursor-pointer">
+                  <Link to="/create-post" onClick={() => setShowMobileSidebar(false)}>📝 Create Post</Link>
+                </li>
+                <li className="hover:text-gray-300 cursor-pointer">
+                  <Link to="/profile" onClick={() => setShowMobileSidebar(false)}>👤 Profile</Link>
+                </li>
+              </ul>
+              
+              {/* Mobile version of profile and top gamers */}
+              <div className="mt-8">
+                <div className="flex items-center gap-3 mb-6 cursor-pointer" onClick={() => {
+                  navigate("/profile");
+                  setShowMobileSidebar(false);
+                }}>
+                  <Avatar
+                    src={profile?.profilePic}
+                    initials={profile?.profileName?.charAt(0).toUpperCase() || "P"}
+                    size="sm"
+                  />
+                  <div>
+                    <div className="text-white font-semibold">{profile?.profileName || "My Profile"}</div>
+                    <div className="text-sm text-gray-400">View Profile</div>
+                  </div>
+                </div>
+
+                <h2 className="text-lg font-semibold mb-3">Popular Gamers</h2>
+                <ul className="space-y-3">
+                  {topGamers.length === 0 ? (
+                    <li className="text-gray-400">No suggestions available</li>
+                  ) : (
+                    topGamers.map((user) => {
+                      const initial = user.profileName?.charAt(0).toUpperCase() ?? "U";
+                      return (
+                        <li
+                          key={user.userId}
+                          className="flex items-center gap-3 hover:text-green-400 cursor-pointer"
+                          onClick={() => {
+                            navigate(`/profile/${user.userId}`);
+                            setShowMobileSidebar(false);
+                          }}
+                        >
+                          <Avatar
+                            src={user.profilePic}
+                            initials={initial}
+                            size="xs"
+                          />
+                          <span>{user.profileName}</span>
+                        </li>
+                      );
+                    })
+                  )}
+                </ul>
+              </div>
+            </aside>
+          </div>
+        )}
+
+        {/* Left Sidebar - Desktop */}
         <aside className="hidden md:flex fixed top-16 left-0 w-64 h-[calc(100vh-4rem)] bg-black border-r border-gray-800 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black z-40">
           <ul className="space-y-6 text-lg font-medium">
             <li className="hover:text-gray-300 cursor-pointer">🏠 Home</li>
@@ -178,8 +265,8 @@ const HomePage = () => {
         </aside>
 
         {/* Feed Section */}
-        <main className="flex-1 flex justify-center px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black">
-          <div className="w-full max-w-[600px] flex flex-col h-full mx-auto">
+        <main className="flex-1 flex justify-center px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black md:ml-64 lg:mr-80">
+          <div className="w-full max-w-[600px] flex flex-col h-full mx-auto pt-4 pb-20 md:pb-4">
             <div className="mb-4 relative">
               <input
                 type="text"
@@ -222,8 +309,8 @@ const HomePage = () => {
           </div>
         </main>
 
-        {/* Right Sidebar */}
-        <aside className="hidden lg:block w-80 bg-black border-l border-gray-800 p-4 overflow-y-auto max-h-full scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black">
+        {/* Right Sidebar - Desktop */}
+        <aside className="hidden lg:block fixed top-16 right-0 w-80 h-[calc(100vh-4rem)] bg-black border-l border-gray-800 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black">
           {/* Current User Profile Section */}
           <div className="flex items-center justify-between mb-9">
             <div
@@ -282,7 +369,7 @@ const HomePage = () => {
         </aside>
       </div>
 
-      {/* Bottom Nav */}
+      {/* Bottom Nav - Mobile */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 bg-black border-t border-gray-800 text-white flex justify-around items-center py-2 md:hidden">
         <Link to="/homepage" className="flex flex-col items-center text-xs hover:text-blue-400">
           <span>🏠</span>
